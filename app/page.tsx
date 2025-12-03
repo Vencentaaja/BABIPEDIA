@@ -20,18 +20,14 @@ export default function Page() {
           <p
             className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
           >
-            <strong>Selamat datang di BabiPedia . </strong> 
-            Kami menghadirkan berbagai olahan babi berkualitas tinggi 
-            dengan rasa autentik dan proses yang higienis. Setiap menu 
-            dibuat dengan perhatian pada detail, sehingga menghadirkan 
-            pengalaman kuliner yang memuaskan dan penuh kelezatan.
+            <strong>Selamat datang di BABIPEDIA .</strong>
           </p>
 
           <Link
-            href="/dashboard"
+            href="/login"
             className="flex items-center gap-5 self-start rounded-lg bg-rose-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-pink-500 md:text-base"
           >
-            <span>Lihat Dashboard BabiPedia</span>
+            <span>Log in</span>
             <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </section>

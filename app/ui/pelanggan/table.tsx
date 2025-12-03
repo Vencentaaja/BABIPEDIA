@@ -4,7 +4,17 @@ import { useState } from 'react';
 import { Customer } from '@/app/lib/definitions';
 import { formatCurrency, getCustomerStatus } from '@/app/lib/utils';
 import StatusBadge from './status';
-import { EyeIcon, XMarkIcon } from '@heroicons/react/24/outline'; 
+import { EyeIcon, XMarkIcon, PhoneIcon } from '@heroicons/react/24/outline';
+
+function formatPhoneForWhatsApp(phone: string): string {
+  // Remove non-numeric characters
+  let cleaned = phone.replace(/\D/g, '');
+  // If starts with 0, replace with 62
+  if (cleaned.startsWith('0')) {
+    cleaned = '62' + cleaned.slice(1);
+  }
+  return cleaned;
+}
 
 export default function CustomersTable({ customers }: { customers: Customer[] }) {
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
@@ -96,7 +106,19 @@ export default function CustomersTable({ customers }: { customers: Customer[] })
               </div>
               
               <DetailRow label="Nama" value={selectedCustomer.name} />
-              <DetailRow label="No. HP" value={selectedCustomer.phone} />
+              <div className="flex justify-between border-b border-gray-100 py-2">
+                <span className="text-gray-500">No. HP</span>
+                <a
+                  href={`https://wa.me/${formatPhoneForWhatsApp(selectedCustomer.phone)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-green-600 hover:text-green-800 hover:underline transition-colors font-medium"
+                  title="Hubungi via WhatsApp"
+                >
+                  <PhoneIcon className="w-4 h-4" />
+                  {selectedCustomer.phone}
+                </a>
+              </div>
               <DetailRow label="Alamat" value={selectedCustomer.address} />
               <DetailRow 
                 label="Total Belanja" 
